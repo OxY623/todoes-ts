@@ -1,62 +1,116 @@
+@font-face {
+    font-family: "Segoe UI";
+    src: url('/public/fonts/Segoe_UI/Segoe\ UI.ttf') format("trueType");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 * {
     box-sizing: border-box;
 }
+
 body {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    font-family: "Segoe UI", Roboto, sans-serif;
+    background-color: #f7f7fa;
+    color: #333;
 }
+
+/* Header */
 header {
-    background-color: mediumorchid;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
     color: white;
-    height: 100px;
+    height: 120px;
     padding: 2rem 1rem;
     text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 h1 {
-    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
 }
+
+/* Form */
 form {
     width: 500px;
+    max-width: 90%;
     margin: 2rem auto;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
+
 form input, form select {
-    padding: 0.5rem 1rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
 }
+form input:focus, form select:focus {
+    border-color: #6a11cb;
+    box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+}
+
 input[type="text"] {
     width: 100%;
 }
+
 form > button {
     cursor: pointer;
-    background-color: mediumorchid;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
     color: white;
     border: none;
-    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.1s ease;
 }
 form > button:hover {
-    background-color: violet;
+    background: linear-gradient(135deg, #2575fc, #6a11cb);
+    transform: translateY(-2px);
 }
 
+/* List */
 ul {
     list-style: none;
     width: 500px;
+    max-width: 90%;
     margin: 2rem auto;
     padding: 0;
 }
 
 .todo-item {
     display: flex;
-    gap: 1rem;
-    padding: 0.5rem 0;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.8rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: transform 0.1s ease;
 }
+.todo-item:hover {
+    transform: scale(1.02);
+}
+
+/* Close button */
 .close {
-    color: red;
+    color: crimson;
     cursor: pointer;
-    font-weight: bolder;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: color 0.2s ease, transform 0.1s ease;
 }
 .close:hover {
-    color:tomato
+    color: tomato;
+    transform: scale(1.2);
 }

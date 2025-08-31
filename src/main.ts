@@ -7,11 +7,11 @@ import type types = require("./types");
 
 (function() {
   // Globals
-  const todoList = document.getElementById('todo-list');
-  const userSelect = document.getElementById('user-todo');
-  const form = document.querySelector('form');
-  let todos: types.IToDo[]  = [];
-  let users: types.IUser[]  = [];
+  const todoList: HTMLElement = document.getElementById('todo-list')!;
+  const userSelect: HTMLElement = document.getElementById('user-todo')!;
+  const form: HTMLFormElement = document.querySelector('form')!;
+  let todos: types.IToDo[] = [];
+  let users: types.IUser[] = [];
 
   // Attach Events
   document.addEventListener('DOMContentLoaded', initApp);
@@ -93,6 +93,7 @@ import type types = require("./types");
       users.forEach((user) => createUserOption(user));
     });
   }
+
   function handleSubmit(event: Event) {
     event.preventDefault();
 
@@ -104,6 +105,7 @@ import type types = require("./types");
 
     createTodo(val);
   }
+
   function handleTodoChange(this:HTMLInputElement) {
     const parent = this.parentElement;
     if(parent){
@@ -113,6 +115,8 @@ import type types = require("./types");
     todoId && toggleTodoComplete(todoId, completed);
     }
   }
+
+  
   function handleClose(this:HTMLSpanElement) {
     const parent = this.parentElement;
     if(parent){
@@ -123,7 +127,7 @@ import type types = require("./types");
   }
 
   // Async logic
-  async function getAllTodos() {
+  async function getAllTodos(): Promise<types.IToDo[]> {
     try {
       const response = await fetch(
         'https://jsonplaceholder.typicode.com/todos?_limit=15'
@@ -133,10 +137,11 @@ import type types = require("./types");
       return data;
     } catch (error) {
       if(error instanceof Error) alertError(error);
+      return [];
     }
   }
 
-  async function getAllUsers() {
+  async function getAllUsers(): Promise<types.IUser []> {
     try {
       const response = await fetch(
         'https://jsonplaceholder.typicode.com/users?_limit=5'
@@ -146,6 +151,7 @@ import type types = require("./types");
       return data;
     } catch (error) {
       if(error instanceof Error) alertError(error);
+      return [];
     }
   }
 
@@ -166,11 +172,11 @@ import type types = require("./types");
 
       printTodo(newTodo);
     } catch (error) {
-      alertError(error);
+      if(error instanceof Error) alertError(error);
     }
   }
 
-  async function toggleTodoComplete(todoId: types.ID, completed: boolean) {
+  async function toggleTodoComplete(todoId: types.ID, completed: boolean): Promise<void> {
     try {
       const response = await fetch(
         `https://jsonplaceholder.typicode.com/todos/${todoId}`,
@@ -191,9 +197,9 @@ import type types = require("./types");
     }
   }
 
-  async function deleteTodo(todoId: types.ID) {
+  async function deleteTodo(todoId: types.ID): Promise<void> {
     try {
-      const response = await fetch(
+      const response = await fetch (
         `https://jsonplaceholder.typicode.com/todos/${todoId}`,
         {
           method: 'DELETE',
@@ -210,6 +216,7 @@ import type types = require("./types");
       }
     } catch (error) {
       if(error instanceof Error) alertError(error);
-    }
+      
   }
+}
 })()

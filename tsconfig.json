@@ -2,13 +2,14 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    // "rootDir": "./src",
-     "outDir": "./public",
+    "rootDir": "./src",
+     "outDir": "./public/js",
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     //"module": "nodenext",
-    "target": "es5",
+    "target": "es6",         // нормальный JS для браузера
+    "module": "es6",       
     "types": [],
     // For nodejs:
     "lib": ["DOM", "ES2015", "ES2016", "ES2017"],
@@ -31,6 +32,7 @@
     // "noUnusedParameters": true,
     // "noFallthroughCasesInSwitch": true,
     // "noPropertyAccessFromIndexSignature": true,
+    "esModuleInterop": true,
 
     // Recommended Options
     "strict": true,
@@ -41,6 +43,6 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
   },
-  "exclude": ["node_modules", "public" ],
+  "exclude": ["node_modules", "public"],
   "include": ["src"]
 }
