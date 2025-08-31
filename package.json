@@ -4,6 +4,7 @@
   "main": "app.js",
   "scripts": {
     "start": "npx tsc -w",
+    "deploy": "gh-pages -d public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
